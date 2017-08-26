@@ -1,62 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:layout_height="wrap_content"
+    tools:layout_width="wrap_content"
+    tools:parentTag="RelativeLayout"
+    tools:theme="@style/MSDefaultStepperLayoutTheme">
 
     <FrameLayout
-        android:id="@+id/ms_iconIconContainer"
+        android:id="@+id/ms_iconContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true">
 
+        <ImageView
+            android:id="@+id/ms_stepIconBackground"
+            style="?attr/ms_stepTabIconBackgroundStyle"
+            tools:ignore="ContentDescription"
+            tools:style="@style/MSStepTabIconBackground" />
+
         <TextView
             android:id="@+id/ms_stepNumber"
-            android:layout_width="@dimen/ms_step_tab_counter_size"
-            android:layout_height="@dimen/ms_step_tab_counter_size"
-            android:background="@drawable/ms_circle"
-            android:gravity="center"
-            android:textColor="@color/ms_white"
-            android:textSize="@dimen/ms_step_tab_circle_font_size" />
+            style="?attr/ms_stepTabNumberStyle"
+            tools:style="@style/MSStepTabNumber" />
 
-        <android.support.v7.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/ms_stepDoneIndicator"
-            android:layout_width="@dimen/ms_step_tab_counter_size"
-            android:layout_height="@dimen/ms_step_tab_counter_size"
-            android:background="@drawable/ms_circle"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/ic_check"
-            android:visibility="gone" />
-
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/ms_stepErrorIndicator"
-            android:layout_width="@dimen/ms_step_tab_counter_size"
-            android:layout_height="@dimen/ms_step_tab_counter_size"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/ic_warning"
-            android:tint="@color/ms_errorColor"
-            android:visibility="gone" />
+            style="?attr/ms_stepTabDoneIndicatorStyle"
+            android:visibility="gone"
+            tools:ignore="ContentDescription"
+            tools:style="@style/MSStepTabDoneIndicator" />
 
     </FrameLayout>
 
     <TextView
         android:id="@+id/ms_stepTitle"
+        style="?attr/ms_stepTabTitleStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/ms_step_tab_text_lateral_padding"
-        android:layout_marginStart="@dimen/ms_step_tab_text_lateral_padding"
-        android:layout_toEndOf="@+id/ms_iconIconContainer"
-        android:layout_toRightOf="@+id/ms_iconIconContainer"
-        android:textColor="@color/ms_black"
-        android:textSize="@dimen/ms_step_tab_title_font_size" />
+        android:layout_toEndOf="@+id/ms_iconContainer"
+        android:layout_toRightOf="@+id/ms_iconContainer"
+        tools:style="@style/MSStepTabTitle" />
 
     <View
         android:id="@+id/ms_stepDivider"
-        android:layout_width="@dimen/ms_step_tab_divider_length"
-        android:layout_height="@dimen/ms_step_tab_divider_thickness"
+        style="?attr/ms_stepTabDividerStyle"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/ms_stepTitle"
         android:layout_toRightOf="@+id/ms_stepTitle"
-        android:background="@drawable/ms_vertical_tab_divider" />
+        tools:style="@style/MSStepTabDivider" />
 
 </merge>

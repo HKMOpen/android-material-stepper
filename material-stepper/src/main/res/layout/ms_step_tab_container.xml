@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.stepstone.stepper.internal.StepTab xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="@dimen/ms_step_tab_height"
-    android:paddingBottom="@dimen/ms_step_tab_vertical_padding"
-    android:paddingTop="@dimen/ms_step_tab_vertical_padding" />
+<!--suppress XmlUnusedNamespaceDeclaration -->
+<com.stepstone.stepper.internal.widget.StepTab xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="?attr/ms_stepTabContainerStyle"
+    tools:layout_height="@dimen/ms_step_tab_height"
+    tools:layout_width="wrap_content"
+    tools:style="@style/MSStepTabContainer"
+    tools:theme="@style/MSDefaultStepperLayoutTheme" />

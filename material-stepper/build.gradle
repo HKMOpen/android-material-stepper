@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 apply plugin: 'maven'
+apply from: '../material-stepper/code_coverage.gradle'
+apply from: '../config/quality/quality.gradle'
 
 ext {
     bintrayRepo = 'maven'
@@ -27,7 +30,7 @@ ext {
 
 android {
     compileSdkVersion project.androidCompileSdkVersion
-    buildToolsVersion ("$androidBuildToolsVersion")
+    buildToolsVersion("$androidBuildToolsVersion")
 
     defaultConfig {
         minSdkVersion project.androidMinSdkVersion
@@ -41,10 +44,34 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    testOptions {
+        //workaround so that code coverage is working with Robolectric: http://stackoverflow.com/a/35769943/973379
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+    }
+
+    lintOptions {
+        warningsAsErrors true
+    }
 }
 
 dependencies {
-    compile ("com.android.support:appcompat-v7:$androidSupportLibraryVersion")
+    compile "com.android.support:appcompat-v7:$androidSupportLibraryVersion"
+
+    testCompile "junit:junit:$junitVersion"
+    testCompile "org.mockito:mockito-core:$mockitoVersion"
+    testCompile "com.squareup.assertj:assertj-android:$assertjVersion"
+    testCompile("org.robolectric:robolectric:$robolectricVersion") {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+    testCompile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+    testCompile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    testCompile "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
 }
 
 gradle.taskGraph.beforeTask { Task task ->
@@ -57,5 +84,14 @@ gradle.taskGraph.beforeTask { Task task ->
     }
 }
 
+// Log out test results to console
+tasks.matching { it instanceof Test }.all {
+    testLogging.events = ["failed", "passed", "skipped"]
+}
+
+check.dependsOn 'checkstyle', 'findbugs', 'pmd', 'jacocoTestReport'
+
 apply from: '../installv1.gradle'
 apply from: '../bintrayv1.gradle'
+
+install.mustRunAfter check
