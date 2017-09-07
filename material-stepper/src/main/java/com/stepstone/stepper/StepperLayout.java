@@ -868,6 +868,9 @@ public class StepperLayout extends LinearLayout implements TabsContainer.TabItem
     }
 
     protected Step findNextStep() {
+        if(mCurrentStepPosition >= mStepAdapter.getCount() - 1){
+            return null;
+        }
         return mStepAdapter.findStep(mCurrentStepPosition + 1);
     }
 

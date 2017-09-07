@@ -100,7 +100,14 @@ public class PersistingStepperLayout extends StepperLayout {
     public void onNext() {
         Step step = findCurrentStep();
 
+        //Persist the variables in the store
         persistStepVariables(step);
+
+        //Fill the variables into the next step
+        Step nextStep = findNextStep();
+        if(nextStep != null){
+            nextStep.loadStepVariables(getStepVariables());
+        }
 
         //Finally call super
         super.onNext();
