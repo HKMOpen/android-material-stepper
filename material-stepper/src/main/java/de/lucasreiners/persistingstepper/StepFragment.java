@@ -41,5 +41,7 @@ public abstract class StepFragment extends Fragment implements Step, StepVariabl
                 }
             }
         }
+
+        onStepVariablesChanged();
     }
 }
