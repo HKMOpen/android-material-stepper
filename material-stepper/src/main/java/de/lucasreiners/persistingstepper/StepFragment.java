@@ -1,11 +1,7 @@
 package de.lucasreiners.persistingstepper;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.stepstone.stepper.Step;
 
@@ -18,9 +14,12 @@ import de.lucasreiners.persistingstepper.annotations.StepVariable;
  * Created by lucasreiners on 07.09.17.
  */
 
-public abstract class StepFragment extends Fragment implements Step {
+public abstract class StepFragment extends Fragment implements Step, StepVariableCallback {
 
+    @Override
+    public void onStepVariablesChanged() {
 
+    }
 
     @Override
     public final void loadStepVariables(Bundle args) {
