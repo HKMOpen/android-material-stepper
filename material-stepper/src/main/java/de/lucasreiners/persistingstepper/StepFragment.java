@@ -24,7 +24,7 @@ public abstract class StepFragment extends Fragment implements Step {
 
     @Override
     public final void loadStepVariables(Bundle args) {
-        //Scan the step for fields annotated with @ContextVariable
+        //Scan the step for fields annotated with @StepVariable
         //and bind value if found in step's arguments
         Field[] fields = this.getClass().getDeclaredFields();
         for (Field field : fields) {

@@ -109,6 +109,9 @@ public class PersistingStepperLayout extends StepperLayout {
             nextStep.loadStepVariables(getStepVariables());
         }
 
+        //Fill the variables into the Layout
+        loadStepVariables(getStepVariables());
+
         //Finally call super
         super.onNext();
     }
@@ -118,6 +121,9 @@ public class PersistingStepperLayout extends StepperLayout {
         Step step = findCurrentStep();
 
         persistStepVariables(step);
+
+        //Fill the variables into the Layout
+        loadStepVariables(getStepVariables());
 
         //Finally call super
         super.onComplete();
@@ -177,6 +183,27 @@ public class PersistingStepperLayout extends StepperLayout {
                     else {
                         throw new RuntimeException(String.format("Unsuported type. Cannot pass value to variable %s of step %s. Variable type is unsuported.",
                                 field.getName(), step.getClass().getName()));
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void loadStepVariables(Bundle args) {
+        //Scan the StepperLayout for fields annotated with @StepVariable
+        //and bind value if found in step's arguments
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            if (field.getAnnotation(StepVariable.class) != null && args.containsKey(field.getName())) {
+                field.setAccessible(true);
+                try {
+                    if (field.getType() == Date.class) {
+                        field.set(this, new Date(args.getLong(field.getName())));
+                    }
+                    else {
+                        field.set(this, args.get(field.getName()));
                     }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
