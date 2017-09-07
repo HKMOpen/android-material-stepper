@@ -1,4 +1,4 @@
-# Persisting Android Material Stepper [![Release](https://jitpack.io/v/LucasR93/persisting-android-material-stepper.svg)](https://jitpack.io/#LucasR93/persisting-android-material-stepper.svg)
+# Persisting Android Material Stepper [![Release](https://jitpack.io/v/LucasR93/persisting-android-material-stepper.svg)](https://jitpack.io/#LucasR93/persisting-android-material-stepper)
 
 This library tries to merge the variable persistence from [WizardDroid](https://github.com/Nimrodda/WizarDroid) into  [Android Material Stepper](https://github.com/stepstone-tech/android-material-stepper)
 
