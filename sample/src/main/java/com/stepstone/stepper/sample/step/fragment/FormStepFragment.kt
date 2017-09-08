@@ -49,7 +49,7 @@ internal class FormStepFragment : ButterKnifeFragment(), Step {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (context is OnProceedListener) {
-            onProceedListener = context as OnProceedListener?
+            onProceedListener = context
         } else {
             throw IllegalStateException("Activity must implement OnProceedListener")
         }
