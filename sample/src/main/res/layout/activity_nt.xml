@@ -4,4 +4,10 @@
     android:id="@+id/stepperLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:ms_stepperType="pro_top"/>
+    app:ms_backButtonBackground="@color/colorPrimary"
+    app:ms_nextButtonBackground="@color/colorAccent"
+    app:ms_nextButtonText="continue"
+    app:ms_nt_arrow_color="@color/ms_white"
+    app:ms_nextButtonColor="@color/ms_white"
+    app:ms_backButtonColor="@color/ms_white"
+    app:ms_stepperType="pro_top" />

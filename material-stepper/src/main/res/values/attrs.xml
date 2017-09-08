@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 Copyright 2016 StepStone Services
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -133,6 +132,8 @@ limitations under the License.
         <!-- Used by ms_stepProgressBar in layout/ms_stepper_layout -->
         <attr name="ms_colorableProgressBarStyle" format="reference" />
 
+        <attr name="ms_colorableTopProgressBarContainerStyle" format="reference" />
+
         <!-- Used by ms_stepPagerProgressBar in layout/ms_stepper_layout -->
         <attr name="ms_stepPagerProgressBarStyle" format="reference" />
 
@@ -168,6 +169,22 @@ limitations under the License.
 
         <!-- Used by ms_stepDivider in layout/ms_step_tab.xml -->
         <attr name="ms_stepTabDividerStyle" format="reference" />
+
+
+        <!-- Used by ms_backNavigationButtonStyleK in layout/ms_stepper_layout -->
+        <attr name="ms_backNavigationButtonStyleK" format="reference" />
+
+        <!-- Used by ms_nextNavigationButtonStyleK in layout/ms_stepper_layout -->
+        <attr name="ms_nextNavigationButtonStyleK" format="reference" />
+
+        <!-- Used by ms_completeNavigationButtonStyleK in layout/ms_stepper_layout -->
+        <attr name="ms_completeNavigationButtonStyleK" format="reference" />
+
+        <attr name="ms_nt_arrow_color" format="color|reference" />
+
+        <attr name="ms_nt_arrow_back" format="reference" />
+
+        <attr name="ms_nt_arrow_next" format="reference" />
 
     </declare-styleable>
 

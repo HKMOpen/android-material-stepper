@@ -42,6 +42,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -181,8 +182,6 @@ public class StepperLayout extends LinearLayout implements TabsContainer.TabItem
 
     private RightNavigationButton mCompleteNavigationButton;
 
-    private ViewGroup mStepNavigation;
-
     private DottedProgressBar mDottedProgressBar;
 
     private ColorableProgressBar mProgressBar;
@@ -197,9 +196,11 @@ public class StepperLayout extends LinearLayout implements TabsContainer.TabItem
 
     private ColorStateList mCompleteButtonColor;
 
-    private RelativeLayout mBottomNagivation_1;
-
-    private RelativeLayout mBottomNagivation_2;
+    private ViewGroup mStepNavigationContainer_v1;
+    private ViewGroup mStepNavigationContainer_v2;
+    private ViewGroup mTopProgressBarContainer;
+    private ImageView mback_arrow;
+    private ImageView mnext_arrow;
 
     @ColorInt
     private int mUnselectedColor;
@@ -509,7 +510,7 @@ public class StepperLayout extends LinearLayout implements TabsContainer.TabItem
      * @param showBottomNavigation true if bottom navigation should be visible, false otherwise
      */
     public void setShowBottomNavigation(boolean showBottomNavigation) {
-        mStepNavigation.setVisibility(showBottomNavigation ? View.VISIBLE : View.GONE);
+        mStepNavigationContainer_v1.setVisibility(showBottomNavigation ? View.VISIBLE : View.GONE);
     }
 
     /**
@@ -713,10 +714,10 @@ public class StepperLayout extends LinearLayout implements TabsContainer.TabItem
         mProgressBar.setVisibility(GONE);
         mTabsContainer.setVisibility(GONE);
         mTopProgressBar.setVisibility(GONE);
-        mStepNavigation.setVisibility(mShowBottomNavigation ? View.VISIBLE : View.GONE);
 
-        mBottomNagivation_1.setVisibility(VISIBLE);
-        mBottomNagivation_2.setVisibility(GONE);
+        mStepNavigationContainer_v1.setVisibility(mShowBottomNavigation ? View.VISIBLE : View.GONE);
+        mStepNavigationContainer_v2.setVisibility(GONE);
+        mTopProgressBarContainer.setVisibility(GONE);
 
         mStepperType = StepperTypeFactory.createType(mTypeIdentifier, this);
         mStepperFeedbackType = StepperFeedbackTypeFactory.createType(mFeedbackTypeMask, this);
@@ -724,7 +725,7 @@ public class StepperLayout extends LinearLayout implements TabsContainer.TabItem
 
     private void initNavigation() {
         if (mBottomNavigationBackground != 0) {
-            mStepNavigation.setBackgroundResource(mBottomNavigationBackground);
+            mStepNavigationContainer_v1.setBackgroundResource(mBottomNavigationBackground);
         }
 
         mBackNavigationButton.setText(mBackButtonText);
@@ -747,16 +748,25 @@ public class StepperLayout extends LinearLayout implements TabsContainer.TabItem
         Drawable chevronEndDrawable = nextDrawableResId != StepViewModel.NULL_DRAWABLE
                 ? ResourcesCompat.getDrawable(getContext().getResources(), nextDrawableResId, null)
                 : null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            mBackNavigationButton.setCompoundDrawablesRelativeWithIntrinsicBounds(chevronStartDrawable, null, null, null);
+        if (mTypeIdentifier == AbstractStepperType.PRO_TOP) {
+            mback_arrow.setImageDrawable(chevronStartDrawable);
+            mnext_arrow.setImageDrawable(chevronEndDrawable);
+            mback_arrow.setImageTintList(mBackButtonColor);
+            mnext_arrow.setImageTintList(mNextButtonColor);
         } else {
-            mBackNavigationButton.setCompoundDrawablesWithIntrinsicBounds(chevronStartDrawable, null, null, null);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                mBackNavigationButton.setCompoundDrawablesRelativeWithIntrinsicBounds(chevronStartDrawable, null, null, null);
+            } else {
+                mBackNavigationButton.setCompoundDrawablesWithIntrinsicBounds(chevronStartDrawable, null, null, null);
+            }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                mNextNavigationButton.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, chevronEndDrawable, null);
+            } else {
+                mNextNavigationButton.setCompoundDrawablesWithIntrinsicBounds(null, null, chevronEndDrawable, null);
+            }
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            mNextNavigationButton.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, chevronEndDrawable, null);
-        } else {
-            mNextNavigationButton.setCompoundDrawablesWithIntrinsicBounds(null, null, chevronEndDrawable, null);
-        }
+
 
         TintUtil.tintTextView(mBackNavigationButton, mBackButtonColor);
         TintUtil.tintTextView(mNextNavigationButton, mNextButtonColor);
@@ -772,17 +782,25 @@ public class StepperLayout extends LinearLayout implements TabsContainer.TabItem
     private void bindViews() {
         mPager = (ViewPager) findViewById(R.id.ms_stepPager);
 
-        mBackNavigationButton = (Button) findViewById(R.id.ms_stepPrevButton);
-        mNextNavigationButton = (RightNavigationButton) findViewById(R.id.ms_stepNextButton);
-        mCompleteNavigationButton = (RightNavigationButton) findViewById(R.id.ms_stepCompleteButton);
-
-        mStepNavigation = (ViewGroup) findViewById(R.id.ms_bottomNavigation);
         mDottedProgressBar = (DottedProgressBar) findViewById(R.id.ms_stepDottedProgressBar);
+        mback_arrow = (ImageView) findViewById(R.id.back_arrow);
+        mnext_arrow = (ImageView) findViewById(R.id.next_arrow);
         mProgressBar = (ColorableProgressBar) findViewById(R.id.ms_stepProgressBar);
         mTabsContainer = (TabsContainer) findViewById(R.id.ms_stepTabsContainer);
         mTopProgressBar = (ColorableProgressBar) findViewById(R.id.ms_stepTopProgressBar);
-        mBottomNagivation_1 = (RelativeLayout) findViewById(R.id.ms_bottomNavigation);
-        mBottomNagivation_2 = (RelativeLayout) findViewById(R.id.ms_bottomNavigation_type2);
+        mTopProgressBarContainer = (ViewGroup) findViewById(R.id.ms_stepTopProgressBarContainer);
+        mStepNavigationContainer_v1 = (ViewGroup) findViewById(R.id.ms_bottomNavigation);
+        mStepNavigationContainer_v2 = (ViewGroup) findViewById(R.id.ms_bottomNavigation_type2);
+
+        if (mTypeIdentifier == AbstractStepperType.PRO_TOP) {
+            mBackNavigationButton = (Button) findViewById(R.id.ms_stepPrevButton_v2);
+            mNextNavigationButton = (RightNavigationButton) findViewById(R.id.ms_stepNextButton_v2);
+            mCompleteNavigationButton = (RightNavigationButton) findViewById(R.id.ms_stepCompleteButton_v2);
+        } else {
+            mBackNavigationButton = (Button) findViewById(R.id.ms_stepPrevButton);
+            mNextNavigationButton = (RightNavigationButton) findViewById(R.id.ms_stepNextButton);
+            mCompleteNavigationButton = (RightNavigationButton) findViewById(R.id.ms_stepCompleteButton);
+        }
     }
 
     private void extractValuesFromAttributes(AttributeSet attrs, @AttrRes int defStyleAttr) {
@@ -960,21 +978,26 @@ public class StepperLayout extends LinearLayout implements TabsContainer.TabItem
         final StepViewModel viewModel = mStepAdapter.getViewModel(newStepPosition);
 
         int backButtonTargetVisibility = (isFirst && !mShowBackButtonOnFirstStep) || !viewModel.isBackButtonVisible() ? View.GONE : View.VISIBLE;
+        int backButtonARTargetVisibility = (isFirst && !mShowBackButtonOnFirstStep) || !viewModel.isBackButtonVisible() ? View.VISIBLE : View.GONE;
         int nextButtonVisibility = isLast || !viewModel.isEndButtonVisible() ? View.GONE : View.VISIBLE;
         int completeButtonVisibility = !isLast || !viewModel.isEndButtonVisible() ? View.GONE : View.VISIBLE;
+
 
         AnimationUtil.fadeViewVisibility(mNextNavigationButton, nextButtonVisibility, userTriggeredChange);
         AnimationUtil.fadeViewVisibility(mCompleteNavigationButton, completeButtonVisibility, userTriggeredChange);
         AnimationUtil.fadeViewVisibility(mBackNavigationButton, backButtonTargetVisibility, userTriggeredChange);
 
+        if (mTypeIdentifier != AbstractStepperType.PRO_TOP) {
+            AnimationUtil.fadeViewVisibility(mback_arrow, backButtonTargetVisibility, userTriggeredChange);
+            AnimationUtil.fadeViewVisibility(mnext_arrow, completeButtonVisibility, userTriggeredChange);
+        }
         updateBackButton(viewModel);
-
         updateEndButton(viewModel.getEndButtonLabel(),
                 isLast ? mCompleteButtonText : mNextButtonText,
                 isLast ? mCompleteNavigationButton : mNextNavigationButton);
-
+        //if (mTypeIdentifier != AbstractStepperType.PRO_TOP) {
         setCompoundDrawablesForNavigationButtons(viewModel.getBackButtonStartDrawableResId(), viewModel.getNextButtonEndDrawableResId());
-
+        //}
         mStepperType.onStepSelected(newStepPosition, userTriggeredChange);
         mListener.onStepSelected(newStepPosition);
         Step step = mStepAdapter.findStep(newStepPosition);

@@ -15,6 +15,13 @@ limitations under the License.
 -->
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <style name="MSNavBarButtonNt" parent="Base.Widget.AppCompat.Button.Borderless">
+        <item name="android:textSize">@dimen/ms_navigation_button_text_size</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
     <style name="MSNavBarButton" parent="Base.Widget.AppCompat.Button.Borderless">
         <item name="android:textSize">@dimen/ms_navigation_button_text_size</item>
         <item name="android:layout_width">wrap_content</item>
@@ -23,7 +30,7 @@ limitations under the License.
     </style>
 
     <style name="MSNavBarButton.Back" tools:targetApi="jelly_bean_mr1">
-        <item name="android:gravity">left|start|center_vertical</item>
+        <item name="android:gravity">right|end|center_vertical</item>
     </style>
 
     <style name="MSNavBarButton.Next" tools:targetApi="jelly_bean_mr1">
@@ -31,7 +38,19 @@ limitations under the License.
     </style>
 
     <style name="MSNavBarButton.Complete" tools:targetApi="jelly_bean_mr1">
-        <item name="android:gravity">right|end|center_vertical</item>v
+        <item name="android:gravity">right|end|center_vertical</item>
+    </style>
+
+    <style name="MSNavBarButtonNt.Back" tools:targetApi="jelly_bean_mr1">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="MSNavBarButtonNt.Next" tools:targetApi="jelly_bean_mr1">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="MSNavBarButtonNt.Complete" tools:targetApi="jelly_bean_mr1">
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="Base.MSStepTabsContainer" parent="">
@@ -53,9 +72,16 @@ limitations under the License.
         <item name="android:padding">0dp</item>
     </style>
 
+    <style name="MSDefaultTopColorableProgressBarContainer">
+        <item name="android:layout_height">@dimen/ms_progress_bar_height_nt</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
     <style name="MSDefaultTopColorableProgressBar" parent="MSColorableProgressBar">
         <item name="android:layout_height">@dimen/ms_progress_bar_height_nt</item>
-        <item name="android:padding">5dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
     </style>
 
     <style name="MSStepTabsScrollView">
@@ -143,11 +169,22 @@ limitations under the License.
     <style name="MSDefaultStepperLayoutTheme">
         <item name="ms_tabsContainerStyle">@style/MSStepTabsContainer</item>
         <item name="ms_bottomNavigationStyle">@style/MSBottomNavigation</item>
+
         <item name="ms_backNavigationButtonStyle">@style/MSNavBarButton.Back</item>
         <item name="ms_nextNavigationButtonStyle">@style/MSNavBarButton.Next</item>
         <item name="ms_completeNavigationButtonStyle">@style/MSNavBarButton.Complete</item>
+
+
+        <item name="ms_backNavigationButtonStyleK">@style/MSNavBarButtonNt.Back</item>
+        <item name="ms_nextNavigationButtonStyleK">@style/MSNavBarButtonNt.Next</item>
+        <item name="ms_completeNavigationButtonStyleK">@style/MSNavBarButtonNt.Complete</item>
+
+
         <item name="ms_colorableProgressBarStyle">@style/MSColorableProgressBar</item>
         <item name="ms_stepPagerProgressBarStyle">@style/MSStepPagerProgressBarStyle</item>
+        <item name="ms_colorableTopProgressBarContainerStyle">
+            @style/MSDefaultTopColorableProgressBarContainer
+        </item>
         <item name="ms_stepPagerOverlayStyle">@style/MSStepPagerOverlayStyle</item>
 
         <item name="ms_stepTabsScrollViewStyle">@style/MSStepTabsScrollView</item>
@@ -162,6 +199,8 @@ limitations under the License.
         <item name="ms_stepTabSubtitleStyle">@style/MSStepTabSubtitle</item>
         <item name="ms_stepTabDividerStyle">@style/MSStepTabDivider</item>
         <item name="ms_stepTabsProgressMessageStyle">@style/MSStepTabsProgressMessage</item>
+        <item name="ms_nt_arrow_color">#00ffffff</item>
+
     </style>
 
 </resources>

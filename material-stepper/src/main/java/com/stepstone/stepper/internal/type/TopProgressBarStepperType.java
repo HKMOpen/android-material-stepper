@@ -3,6 +3,7 @@ package com.stepstone.stepper.internal.type;
 import android.support.annotation.NonNull;
 import android.support.annotation.RestrictTo;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.stepstone.stepper.R;
@@ -19,13 +20,14 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY;
 public class TopProgressBarStepperType extends AbstractStepperType {
 
     private final ColorableProgressBar mProgressBar;
-    private final RelativeLayout mBottomNagivation_2, mBottomNagivation_1;
+    private final RelativeLayout mBottomNagivation_2, mBottomNagivation_1, mTopProgressBarContainer;
 
     public TopProgressBarStepperType(StepperLayout stepperLayout) {
         super(stepperLayout);
         mProgressBar = (ColorableProgressBar) stepperLayout.findViewById(R.id.ms_stepTopProgressBar);
         mBottomNagivation_1 = (RelativeLayout) stepperLayout.findViewById(R.id.ms_bottomNavigation);
         mBottomNagivation_2 = (RelativeLayout) stepperLayout.findViewById(R.id.ms_bottomNavigation_type2);
+        mTopProgressBarContainer = (RelativeLayout) stepperLayout.findViewById(R.id.ms_stepTopProgressBarContainer);
 
         mProgressBar.setProgressColor(getSelectedColor());
         mProgressBar.setProgressBackgroundColor(getUnselectedColor());
@@ -38,6 +40,7 @@ public class TopProgressBarStepperType extends AbstractStepperType {
 
         mBottomNagivation_1.setVisibility(View.GONE);
         mBottomNagivation_2.setVisibility(View.VISIBLE);
+        mTopProgressBarContainer.setVisibility(View.VISIBLE);
     }
 
     /**
