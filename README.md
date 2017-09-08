@@ -1,17 +1,14 @@
-<p align="center">
-  <img src ="./art/material-stepper-logo.png" width="256" height="256"/>
-</p>
+# Persisting Android Material Stepper [![Release](https://jitpack.io/v/LucasR93/persisting-android-material-stepper.svg)](https://jitpack.io/#LucasR93/persisting-android-material-stepper)
 
 # Android Material Stepper [![Build Status](https://travis-ci.org/stepstone-tech/android-material-stepper.svg?branch=master)](https://travis-ci.org/stepstone-tech/android-material-stepper) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android%20Material%20Stepper-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5138) [![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23243-brightgreen.svg)](http://androidweekly.net/issues/issue-243)
 
-This library allows to use Material steppers inside Android applications.
 
-Quoting the [documentation](https://www.google.com/design/spec/components/steppers.html):
 
->Steppers display progress through a sequence by breaking it up into multiple logical and numbered steps.
+## Documentation
+Instead of extending from Fragment and including Step simply extend from StepFragment class
 
-All of the code & features mentioned in [Getting started](#getting-started) and [Advanced usage](#advanced-usage) are showcased in the sample app.
-Moreover, you can find there other examples, e.g. how to persist state on rotation, display errors, change whether the user can go to the next step, etc. So please have a look!
+Use annotation @StepVariable for variables defined in your StepFragments or PersistingStepperLayout. Variables are automatically shared into PersistingStepperLayout and the following StepFragment upon clicking next in the stepper.
+Make sure to use the same name for StepVariables across different StepFragments.
 
 ## Jump to section
 - [Supported steppers](#supported-steppers)

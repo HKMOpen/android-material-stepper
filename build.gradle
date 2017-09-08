@@ -29,9 +29,9 @@ configure(allprojects) {
     /* Android config and dependency versions */
     ext {
         androidMinSdkVersion 		        = 14
-        androidTargetSdkVersion             = 25
-        androidCompileSdkVersion            = 25
-        androidBuildToolsVersion            = '25.0.2'
+        androidTargetSdkVersion             = 26
+        androidCompileSdkVersion            = 26
+        androidBuildToolsVersion            = '26.0.1'
         androidSupportLibraryVersion        = '25.4.0'
 
         junitVersion                        = '4.12'

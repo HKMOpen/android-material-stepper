@@ -16,6 +16,7 @@ limitations under the License.
 
 package com.stepstone.stepper;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 /**
@@ -42,5 +43,8 @@ public interface Step {
      * @param error the cause of the validation failure
      */
     void onError(@NonNull VerificationError error);
+
+
+    void loadStepVariables(Bundle args);
 
 }
