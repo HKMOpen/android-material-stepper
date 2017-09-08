@@ -17,7 +17,11 @@ limitations under the License.
 package com.stepstone.stepper.sample.step.fragment
 
 import android.content.Context
+import android.os.Bundle
 import android.text.TextUtils
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
