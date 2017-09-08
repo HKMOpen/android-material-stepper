@@ -1,40 +1,18 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'bintray-release'
 apply plugin: 'maven'
 apply from: '../material-stepper/code_coverage.gradle'
 apply from: '../config/quality/quality.gradle'
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = POM_ARTIFACT_ID
-
-    publishedGroupId = POM_GROUP_ID
-    libraryName = 'Android Material Stepper'
-    artifact = POM_ARTIFACT_ID
-
-    libraryDescription = 'This library allows to use Material steppers inside Android applications.'
-
-    siteUrl = 'https://github.com/stepstone-tech/android-material-stepper'
-    gitUrl = 'https://github.com/stepstone-tech/android-material-stepper.git'
-
-    libraryVersion = POM_VERSION
-
-    developerId = 'zawadz88'
-    developerName = 'Piotr Zawadzki'
-    developerEmail = 'piotr.zawadzki@stepstone.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
 
 android {
-    compileSdkVersion project.androidCompileSdkVersion
-    buildToolsVersion("$androidBuildToolsVersion")
+    compileSdkVersion project.ANDROID_BUILD_SDK_VERSION as int
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
     defaultConfig {
-        minSdkVersion project.androidMinSdkVersion
-        targetSdkVersion project.androidTargetSdkVersion
+        minSdkVersion project.ANDROID_BUILD_MIN_SDK_VERSION
+        targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -47,15 +25,16 @@ android {
             testCoverageEnabled true
         }
     }
+    //workaround so that code coverage is working with Robolectric: http://stackoverflow.com/a/35769943/973379
+    //fixes https://github.com/robolectric/robolectric/issues/3169#issuecomment-312046322
+
 
     testOptions {
-        //workaround so that code coverage is working with Robolectric: http://stackoverflow.com/a/35769943/973379
         unitTests.all {
             jacoco {
                 includeNoLocationClasses = true
             }
         }
-        //fixes https://github.com/robolectric/robolectric/issues/3169#issuecomment-312046322
         unitTests.includeAndroidResources = true
     }
 
@@ -66,18 +45,18 @@ android {
 }
 
 dependencies {
-    api "com.android.support:appcompat-v7:$androidSupportLibraryVersion"
+    api libden.appCompat
 
-    testImplementation "junit:junit:$junitVersion"
-    testImplementation "org.mockito:mockito-core:$mockitoVersion"
-    testImplementation "com.squareup.assertj:assertj-android:$assertjVersion"
-    testImplementation("org.robolectric:robolectric:$robolectricVersion") {
+    testImplementation "junit:junit:${J_UNIT}"
+    testImplementation "org.mockito:mockito-core:${KOTLIN_MOCK}"
+    testImplementation "com.squareup.assertj:assertj-android:${ACCERT_J}"
+    testImplementation("org.robolectric:robolectric:${ROBOLECTRIC}") {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
-    testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
-    testImplementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
-    testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
+    testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:${KOTLIN}"
+    testImplementation "org.jetbrains.kotlin:kotlin-reflect:${KOTLIN}"
+    testImplementation "com.nhaarman:mockito-kotlin:${KOTLIN_MOCK}"
 }
 
 gradle.taskGraph.beforeTask { Task task ->
@@ -99,7 +78,5 @@ task ('checkWithCoverage') {
     dependsOn 'checkstyle', 'findbugs', 'pmd', 'jacocoTestReport', 'lintDebug'
 }
 
-apply from: '../installv1.gradle'
-apply from: '../bintrayv1.gradle'
-
-install.mustRunAfter check
+apply from: 'bintrayrelease.gradle'
+//install.mustRunAfter check

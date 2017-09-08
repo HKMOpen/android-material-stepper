@@ -5,13 +5,13 @@ apply from: "$rootDir.path/config/project_properties.gradle"
 apply from: '../sample/code_coverage.gradle'
 
 android {
-    compileSdkVersion project.androidCompileSdkVersion
-    buildToolsVersion("$androidBuildToolsVersion")
+    compileSdkVersion project.ANDROID_BUILD_SDK_VERSION as int
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
     defaultConfig {
         applicationId "com.stepstone.stepper.sample"
-        minSdkVersion project.androidMinSdkVersion
-        targetSdkVersion project.androidTargetSdkVersion
+        minSdkVersion project.ANDROID_BUILD_MIN_SDK_VERSION
+        targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION
         versionCode 1
         versionName "1.0"
 
@@ -34,37 +34,37 @@ android {
         execution 'ANDROID_TEST_ORCHESTRATOR'
     }
 
-    adbOptions {
+   adbOptions {
         installOptions getAdbInstallOptions()
     }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:${KOTLIN}"
 
     implementation project(':material-stepper')
-    implementation "com.android.support:appcompat-v7:$androidSupportLibraryVersion"
-    implementation "com.android.support:recyclerview-v7:$androidSupportLibraryVersion"
-    implementation "com.android.support:design:$androidSupportLibraryVersion"
+    implementation libden.appCompat
+    implementation libden.recycler
+    implementation libden.design
 
-    implementation "com.jakewharton:butterknife:$butterknifeVersion"
-    kapt "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+    implementation "com.jakewharton:butterknife:${BUTTERKNIFE}"
+    kapt "com.jakewharton:butterknife-compiler:${BUTTERKNIFE}"
 
-    implementation "uk.co.chrisjenx:calligraphy:$calligraphyVersion"
+    implementation "uk.co.chrisjenx:calligraphy:${CALLIGRAPHY}"
 
-    androidTestImplementation "com.android.support.test:runner:$supportTestVersion"
-    androidTestImplementation "com.android.support.test:rules:$supportTestVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
-    androidTestUtil "com.android.support.test:orchestrator:$supportTestVersion"
-    androidTestImplementation("com.android.support:support-annotations:$androidSupportLibraryVersion") {
+    androidTestImplementation "com.android.support.test:runner:${ANDROID_SUPPORT_TEST}"
+    androidTestImplementation "com.android.support.test:rules:${ANDROID_SUPPORT_TEST}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${ANDROID_ESPRESSO}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:${ANDROID_ESPRESSO}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:${ANDROID_ESPRESSO}"
+    androidTestUtil "com.android.support.test:orchestrator:${ANDROID_SUPPORT_TEST}"
+    androidTestImplementation(libden.annotation) {
         force = true
     }
-    androidTestImplementation("com.android.support:support-v4:$androidSupportLibraryVersion") {
+    androidTestImplementation(libden.support_v4) {
         force = true
     }
-    androidTestImplementation("com.android.support:appcompat-v7:$androidSupportLibraryVersion") {
+    androidTestImplementation(libden.appCompat) {
         force = true
     }
 }
@@ -81,7 +81,7 @@ def findTaskInLib(String taskName) {
     return rootProject.childProjects['material-stepper'].getTasksByName(taskName, false).first()
 }
 
-task ('checkWithUiTests', dependsOn: [generateScreenshotReportTask, findTaskInLib('testDebugUnitTest'), findTaskInLib('lintDebug'), tasks['mergedJacocoTestReport'], findTaskInLib('pmd'), findTaskInLib('findbugs'), findTaskInLib('checkstyle')]) {
+task('checkWithUiTests', dependsOn: [generateScreenshotReportTask, findTaskInLib('testDebugUnitTest'), findTaskInLib('lintDebug'), tasks['mergedJacocoTestReport'], findTaskInLib('pmd'), findTaskInLib('findbugs'), findTaskInLib('checkstyle')]) {
     group = "Verification"
     description = "Runs unit and UI tests with code coverage and makes code analysis."
 }
