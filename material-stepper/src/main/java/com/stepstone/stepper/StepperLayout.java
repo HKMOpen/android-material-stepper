@@ -863,8 +863,15 @@ public class StepperLayout extends LinearLayout implements TabsContainer.TabItem
         return position == mStepAdapter.getCount() - 1;
     }
 
-    private Step findCurrentStep() {
+    protected Step findCurrentStep() {
         return mStepAdapter.findStep(mCurrentStepPosition);
+    }
+
+    protected Step findNextStep() {
+        if(mCurrentStepPosition >= mStepAdapter.getCount() - 1){
+            return null;
+        }
+        return mStepAdapter.findStep(mCurrentStepPosition + 1);
     }
 
     private void updateErrorFlagWhenGoingBack() {
@@ -872,7 +879,7 @@ public class StepperLayout extends LinearLayout implements TabsContainer.TabItem
     }
 
     @UiThread
-    private void onNext() {
+    protected void onNext() {
         Step step = findCurrentStep();
 
         if (verifyCurrentStep(step)) {
@@ -916,7 +923,7 @@ public class StepperLayout extends LinearLayout implements TabsContainer.TabItem
         mListener.onError(verificationError);
     }
 
-    private void onComplete() {
+    protected void onComplete() {
         Step step = findCurrentStep();
         if (verifyCurrentStep(step)) {
             invalidateCurrentPosition();
