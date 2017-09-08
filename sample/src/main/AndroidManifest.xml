@@ -40,6 +40,7 @@
         <activity android:name=".CustomNavigationButtonsActivity" />
         <activity android:name=".ReturnButtonActivity" />
         <activity android:name=".NoFragmentsActivity" />
+        <activity android:name=".ThemeCompatNT" />
         <activity android:name=".ProceedProgrammaticallyActivity"
             android:windowSoftInputMode="stateVisible"/>
         <activity android:name=".PassDataBetweenStepsActivity"

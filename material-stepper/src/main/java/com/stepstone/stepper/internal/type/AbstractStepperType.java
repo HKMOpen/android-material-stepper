@@ -55,6 +55,12 @@ public abstract class AbstractStepperType {
      */
     public static final int NONE = 0x04;
 
+    /**
+     * Non-material design implementation
+     */
+    public static final int PRO_TOP = 0x05;
+
+
     final StepperLayout mStepperLayout;
 
     final SparseArray<VerificationError> mStepErrors = new SparseArray<>();

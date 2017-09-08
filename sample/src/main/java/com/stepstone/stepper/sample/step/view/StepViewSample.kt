@@ -1,6 +1,7 @@
 package com.stepstone.stepper.sample.step.view
 
 import android.content.Context
+import android.os.Bundle
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.animation.AnimationUtils
@@ -16,6 +17,9 @@ import com.stepstone.stepper.sample.R
  */
 
 class StepViewSample(context: Context) : FrameLayout(context), Step {
+    override fun loadStepVariables(args: Bundle?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     companion object {
 
@@ -48,11 +52,9 @@ class StepViewSample(context: Context) : FrameLayout(context), Step {
     @Suppress("DEPRECATION")
     private fun init(context: Context) {
         val v = LayoutInflater.from(context).inflate(R.layout.fragment_step, this, true)
-        button = v.findViewById(R.id.button) as Button
-
+        button = v.findViewById(R.id.button)
         updateNavigationBar()
-
-        button = v.findViewById(R.id.button) as Button
+        button = v.findViewById(R.id.button)
         button?.text = Html.fromHtml("Taps: <b>$i</b>")
         button?.setOnClickListener {
             button?.text = Html.fromHtml("Taps: <b>${++i}</b>")

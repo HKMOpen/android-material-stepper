@@ -30,6 +30,9 @@ import com.stepstone.stepper.sample.R
 import butterknife.BindView
 
 internal class StepperFeedbackStepFragment : ButterKnifeFragment(), BlockingStep {
+    override fun loadStepVariables(args: Bundle?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     companion object {
 

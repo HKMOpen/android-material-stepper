@@ -47,8 +47,8 @@ dependencies {
     compile libden.recycler
     compile libden.design
 
-    compile "com.jakewharton:butterknife:${BUTTERKNIFE}"
-    annotationProcessor "com.jakewharton:butterknife-compiler:${BUTTERKNIFE}"
+    compile libden.butterknife
+    kapt libden.butterknifeapt
 
     compile "uk.co.chrisjenx:calligraphy:${CALLIGRAPHY}"
 
@@ -68,6 +68,7 @@ dependencies {
         force = true
     }
 }
+/*
 
 def instrumentationTestTaskName = 'connectedCheck'
 
@@ -85,3 +86,4 @@ task('checkWithUiTests', dependsOn: [generateScreenshotReportTask, findTaskInLib
     group = "Verification"
     description = "Runs unit and UI tests with code coverage and makes code analysis."
 }
+*/

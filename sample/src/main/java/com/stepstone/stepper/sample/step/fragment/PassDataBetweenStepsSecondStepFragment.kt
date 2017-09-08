@@ -17,6 +17,7 @@ limitations under the License.
 package com.stepstone.stepper.sample.step.fragment
 
 import android.content.Context
+import android.os.Bundle
 import android.widget.TextView
 
 import com.stepstone.stepper.Step
@@ -27,6 +28,11 @@ import com.stepstone.stepper.sample.R
 import butterknife.BindView
 
 internal class PassDataBetweenStepsSecondStepFragment : ButterKnifeFragment(), Step {
+
+
+    override fun loadStepVariables(args: Bundle?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     companion object {
 

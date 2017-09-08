@@ -28,7 +28,6 @@ android {
     //workaround so that code coverage is working with Robolectric: http://stackoverflow.com/a/35769943/973379
     //fixes https://github.com/robolectric/robolectric/issues/3169#issuecomment-312046322
 
-
 /*
     testOptions {
         unitTests.all {
@@ -39,6 +38,7 @@ android {
         unitTests.includeAndroidResources = true
     }
 */
+
 
     lintOptions {
         warningsAsErrors true
@@ -62,8 +62,8 @@ dependencies {
 }
 
 // Log out test results to console
-/*
 
+/*
 gradle.taskGraph.beforeTask { Task task ->
     if (task instanceof Javadoc) {
         def releaseVariant = android.libraryVariants.find { it.buildType.name == 'release' }
@@ -76,8 +76,8 @@ gradle.taskGraph.beforeTask { Task task ->
 
 tasks.matching { it instanceof Test}.all {
     testLogging.events = ["failed", "passed", "skipped"]
-}
-*/
+}*/
+
 
 task ('checkWithCoverage') {
     dependsOn 'checkstyle', 'findbugs', 'pmd', 'jacocoTestReport', 'lintDebug'

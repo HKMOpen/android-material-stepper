@@ -7,11 +7,23 @@
     tools:parentTag="android.widget.LinearLayout"
     tools:theme="@style/MSDefaultStepperLayoutTheme">
 
+
     <com.stepstone.stepper.internal.widget.TabsContainer
         android:id="@+id/ms_stepTabsContainer"
         style="?attr/ms_tabsContainerStyle"
         android:layout_width="match_parent"
-        tools:style="@style/MSStepTabsContainer" />
+        tools:style="@style/MSStepTabsContainer"
+        tools:visibility="invisible" />
+
+    <com.stepstone.stepper.internal.widget.ColorableProgressBar
+        android:id="@+id/ms_stepTopProgressBar"
+        style="?attr/ms_colorableProgressBarStyle"
+        android:layout_width="match_parent"
+        android:indeterminate="false"
+        android:visibility="gone"
+        tools:progress="33"
+        tools:style="@style/MSDefaultTopColorableProgressBar"
+        tools:visibility="visible" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -39,6 +51,53 @@
             tools:style="@style/MSStepPagerProgressBarStyle" />
 
     </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/ms_bottomNavigation_type2"
+        style="?attr/ms_bottomNavigationStyle"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        tools:style="@style/MSBottomNavigation">
+
+        <Button
+            android:id="@+id/ms_stepPrevButton_v2"
+            style="?attr/ms_backNavigationButtonStyle"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/ms_ic_chevron_start"
+            android:drawableStart="@drawable/ms_ic_chevron_start"
+            tools:drawableTint="@color/ms_material_grey_400"
+            tools:style="@style/MSNavBarButton.Back"
+            tools:text="@string/ms_back"
+            tools:textColor="@color/ms_bottomNavigationButtonTextColor" />
+
+        <com.stepstone.stepper.internal.widget.RightNavigationButton
+            android:id="@+id/ms_stepNextButton_v2"
+            style="?attr/ms_nextNavigationButtonStyle"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            tools:drawableEnd="@drawable/ms_ic_chevron_end"
+            tools:drawableRight="@drawable/ms_ic_chevron_end"
+            tools:drawableTint="@color/ms_material_grey_400"
+            tools:style="@style/MSNavBarButton.Next"
+            tools:text="@string/ms_next"
+            tools:textColor="@color/ms_bottomNavigationButtonTextColor"
+            tools:visibility="visible" />
+
+        <com.stepstone.stepper.internal.widget.RightNavigationButton
+            android:id="@+id/ms_stepCompleteButton_v2"
+            style="?attr/ms_completeNavigationButtonStyle"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:alpha="0"
+            android:visibility="gone"
+            tools:style="@style/MSNavBarButton.Complete"
+            tools:text="@string/ms_complete"
+            tools:textColor="@color/ms_bottomNavigationButtonTextColor" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/ms_bottomNavigation"

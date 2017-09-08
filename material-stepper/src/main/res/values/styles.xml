@@ -53,6 +53,11 @@ limitations under the License.
         <item name="android:padding">0dp</item>
     </style>
 
+    <style name="MSDefaultTopColorableProgressBar" parent="MSColorableProgressBar">
+        <item name="android:layout_height">@dimen/ms_progress_bar_height_nt</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
     <style name="MSStepTabsScrollView">
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:scrollbars">none</item>
@@ -93,7 +98,8 @@ limitations under the License.
     <style name="MSStepTabTitle" tools:ignore="NewApi">
         <item name="android:layout_marginLeft">@dimen/ms_step_tab_text_lateral_padding</item>
         <item name="android:layout_marginStart">@dimen/ms_step_tab_text_lateral_padding</item>
-        <item name="android:textColor">@color/ms_black</item><!-- Text alpha is changed in StepTab. 87% for active and 38% for inactive-->
+        <item name="android:textColor">@color/ms_black
+        </item><!-- Text alpha is changed in StepTab. 87% for active and 38% for inactive-->
         <item name="android:textSize">@dimen/ms_step_tab_title_font_size</item>
     </style>
 

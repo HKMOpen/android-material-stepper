@@ -27,18 +27,21 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY;
  * Factory class for creating stepper types.
  */
 @RestrictTo(LIBRARY)
-public class StepperTypeFactory {
+public final class StepperTypeFactory {
 
     private static final String TAG = StepperTypeFactory.class.getSimpleName();
 
     /**
      * Creates a stepper type for provided arguments.
-     * @param stepType step type, one of <code>attrs - ms_stepperType</code>
+     *
+     * @param stepType      step type, one of <code>attrs - ms_stepperType</code>
      * @param stepperLayout stepper layout to use with this stepper type
      * @return a stepper type
      */
     public static AbstractStepperType createType(int stepType, StepperLayout stepperLayout) {
         switch (stepType) {
+            case AbstractStepperType.PRO_TOP:
+                return new TopProgressBarStepperType(stepperLayout);
             case AbstractStepperType.DOTS:
                 return new DotsStepperType(stepperLayout);
             case AbstractStepperType.PROGRESS_BAR:

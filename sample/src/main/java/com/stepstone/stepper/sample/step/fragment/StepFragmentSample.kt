@@ -30,7 +30,9 @@ import com.stepstone.stepper.sample.OnNavigationBarListener
 import com.stepstone.stepper.sample.R
 
 internal class StepFragmentSample : ButterKnifeFragment(), Step {
-
+    override fun loadStepVariables(args: Bundle?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
     companion object {
 
         private const val CLICKS_KEY = "clicks"

@@ -40,16 +40,21 @@ configure(allprojects) {
 
 
         libden = [
+
+                support_v4            : "com.android.support:support-v4:${SUPPORT_LIBRARY}",
                 percent               : "com.android.support:percent:${SUPPORT_LIBRARY}",
                 annotation            : "com.android.support:support-annotations:${SUPPORT_LIBRARY}",
                 support               : "com.android.support:support-v13:${SUPPORT_LIBRARY}",
                 appCompat             : "com.android.support:appcompat-v7:${SUPPORT_LIBRARY}",
-                support_v4            : "com.android.support:support-v4:${SUPPORT_LIBRARY}",
                 recycler              : "com.android.support:recyclerview-v7:${SUPPORT_LIBRARY}",
                 design                : "com.android.support:design:${SUPPORT_LIBRARY}",
                 cardView              : "com.android.support:cardview-v7:${SUPPORT_LIBRARY}",
                 mediarouter           : "com.android.support:mediarouter-v7:${SUPPORT_LIBRARY}",
                 palette               : "com.android.support:palette-v7:${SUPPORT_LIBRARY}",
+
+
+                butterknife           : "com.jakewharton:butterknife:${BUTTERKNIFE}",
+                butterknifeapt        : "com.jakewharton:butterknife-compiler:${BUTTERKNIFE}",
 
                 retrofitAdapter       : "com.squareup.retrofit2:retrofit-adapters:${RETROFIT_LIBRARY}",
                 retrofitCore          : "com.squareup.retrofit2:retrofit:${RETROFIT_LIBRARY}",
@@ -71,7 +76,6 @@ configure(allprojects) {
                 leakcanary            : "com.squareup.leakcanary:leakcanary-android:${LEAKCANARY}",
                 leakcanarynoop        : "com.squareup.leakcanary:leakcanary-android-no-op:${LEAKCANARY}",
 
-                gms_facial            : "com.google.android.gms:play-services-vision:9.8.0",
                 gms_anayltics         : "com.google.android.gms:play-services-analytics:${GOOGLE_PLAY_SERVICE}",
 
                 dagger                : "com.google.dagger:dagger:${DAGGER_2}",
@@ -92,7 +96,9 @@ configure(allprojects) {
                 config                : "com.google.firebase:firebase-config:${FIREBASE}",
                 invites               : "com.google.firebase:firebase-invites:${FIREBASE}",
                 ads                   : "com.google.firebase:firebase-ads:${FIREBASE}",
-                appindexing           : "com.google.firebase:firebase-appindexing:${FIREBASE}"
+                appindexing           : "com.google.firebase:firebase-appindexing:${FIREBASE}",
+                perf                  : "com.google.firebase:firebase-perf:${FIREBASE}"
+
 
         ]
     }
