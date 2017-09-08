@@ -28,7 +28,7 @@ android {
     }
 
     testOptions {
-        execution 'ANDROID_TEST_ORCHESTRATOR'
+       // execution 'ANDROID_TEST_ORCHESTRATOR'
     }
 
     adbOptions {
@@ -38,10 +38,10 @@ android {
 
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation("com.android.support.test.espresso:espresso-core:${ANDROID_ESPRESSO}", {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile("com.android.support.test.espresso:espresso-core:${ANDROID_ESPRESSO}", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation libden.appCompat
-    testImplementation "junit:junit:${J_UNIT}"
+    compile libden.appCompat
+    testCompile "junit:junit:${J_UNIT}"
 }

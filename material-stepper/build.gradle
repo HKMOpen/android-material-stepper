@@ -29,6 +29,7 @@ android {
     //fixes https://github.com/robolectric/robolectric/issues/3169#issuecomment-312046322
 
 
+/*
     testOptions {
         unitTests.all {
             jacoco {
@@ -37,6 +38,7 @@ android {
         }
         unitTests.includeAndroidResources = true
     }
+*/
 
     lintOptions {
         warningsAsErrors true
@@ -45,19 +47,22 @@ android {
 }
 
 dependencies {
-    api libden.appCompat
+    compile libden.appCompat
 
-    testImplementation "junit:junit:${J_UNIT}"
-    testImplementation "org.mockito:mockito-core:${KOTLIN_MOCK}"
-    testImplementation "com.squareup.assertj:assertj-android:${ACCERT_J}"
-    testImplementation("org.robolectric:robolectric:${ROBOLECTRIC}") {
+    testCompile "junit:junit:${J_UNIT}"
+    testCompile "org.mockito:mockito-core:${KOTLIN_MOCK}"
+    testCompile "com.squareup.assertj:assertj-android:${ACCERT_J}"
+    testCompile("org.robolectric:robolectric:${ROBOLECTRIC}") {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
-    testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:${KOTLIN}"
-    testImplementation "org.jetbrains.kotlin:kotlin-reflect:${KOTLIN}"
-    testImplementation "com.nhaarman:mockito-kotlin:${KOTLIN_MOCK}"
+    testCompile "org.jetbrains.kotlin:kotlin-stdlib-jre7:${KOTLIN}"
+    testCompile "org.jetbrains.kotlin:kotlin-reflect:${KOTLIN}"
+    testCompile "com.nhaarman:mockito-kotlin:${KOTLIN_MOCK}"
 }
+
+// Log out test results to console
+/*
 
 gradle.taskGraph.beforeTask { Task task ->
     if (task instanceof Javadoc) {
@@ -69,10 +74,10 @@ gradle.taskGraph.beforeTask { Task task ->
     }
 }
 
-// Log out test results to console
 tasks.matching { it instanceof Test}.all {
     testLogging.events = ["failed", "passed", "skipped"]
 }
+*/
 
 task ('checkWithCoverage') {
     dependsOn 'checkstyle', 'findbugs', 'pmd', 'jacocoTestReport', 'lintDebug'

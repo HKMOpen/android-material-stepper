@@ -31,7 +31,7 @@ android {
     }
 
     testOptions {
-        execution 'ANDROID_TEST_ORCHESTRATOR'
+    //    execution 'ANDROID_TEST_ORCHESTRATOR'
     }
 
    adbOptions {
@@ -40,31 +40,31 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:${KOTLIN}"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:${KOTLIN}"
 
-    implementation project(':material-stepper')
-    implementation libden.appCompat
-    implementation libden.recycler
-    implementation libden.design
+    compile project(':material-stepper')
+    compile libden.appCompat
+    compile libden.recycler
+    compile libden.design
 
-    implementation "com.jakewharton:butterknife:${BUTTERKNIFE}"
-    kapt "com.jakewharton:butterknife-compiler:${BUTTERKNIFE}"
+    compile "com.jakewharton:butterknife:${BUTTERKNIFE}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${BUTTERKNIFE}"
 
-    implementation "uk.co.chrisjenx:calligraphy:${CALLIGRAPHY}"
+    compile "uk.co.chrisjenx:calligraphy:${CALLIGRAPHY}"
 
-    androidTestImplementation "com.android.support.test:runner:${ANDROID_SUPPORT_TEST}"
-    androidTestImplementation "com.android.support.test:rules:${ANDROID_SUPPORT_TEST}"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:${ANDROID_ESPRESSO}"
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:${ANDROID_ESPRESSO}"
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:${ANDROID_ESPRESSO}"
-    androidTestUtil "com.android.support.test:orchestrator:${ANDROID_SUPPORT_TEST}"
-    androidTestImplementation(libden.annotation) {
+    androidTestCompile "com.android.support.test:runner:${ANDROID_SUPPORT_TEST}"
+    androidTestCompile "com.android.support.test:rules:${ANDROID_SUPPORT_TEST}"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:${ANDROID_ESPRESSO}"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:${ANDROID_ESPRESSO}"
+    androidTestCompile "com.android.support.test.espresso:espresso-contrib:${ANDROID_ESPRESSO}"
+//    androidTestUtil "com.android.support.test:orchestrator:${ANDROID_SUPPORT_TEST}"
+    androidTestCompile(libden.annotation) {
         force = true
     }
-    androidTestImplementation(libden.support_v4) {
+    androidTestCompile(libden.support_v4) {
         force = true
     }
-    androidTestImplementation(libden.appCompat) {
+    androidTestCompile(libden.appCompat) {
         force = true
     }
 }
